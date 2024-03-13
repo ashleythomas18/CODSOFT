@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+int main()
+{
+    int random= rand()%100+1;
+    int guess;
+    int a=0;
+    
+    do{
+    cin>>guess;
+    a++;
+     
+    if(guess<random){
+        cout<<"too less, try again: ";
+    }
+    else if(guess>random){
+        cout<<"too high, try again: ";
+    }
+    else{
+        cout<<"correct guess";
+    }
+    }
+    while(guess!= random);
+
+    return 0;
+}
