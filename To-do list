@@ -1,0 +1,80 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include <string>
+using namespace std;
+void addElements(string arr[50], int& x){
+    cout<<"Enter the number of tasks to be completed by you: ";
+    cin>>x;
+    if(x==0){
+        cout<<"empty list";
+    
+    }
+    else{
+        for(int i=0;i<x;i++){
+            cin>>arr[i];
+            
+        }
+    }
+    cout<<"the to-do list is: ";
+    for (int i = 0; i < x; i++) {
+            cout << arr[i] << " :task pending "<<endl;
+    }
+}
+void markTasksCompleted(string arr[], int size, int indices[], int numIndices) {
+    for (int i = 0; i < numIndices;i++) {
+        int index = indices[i];
+        if (index >= 0 && index < size) {
+            arr[index] += " :task completed";
+        } else {
+            cout << "Invalid index " << index << ". Task not marked as completed." << endl;
+        }
+    }
+}
+void removeTask(string arr[], int& size, int index) {
+    if (index >= 0 && index < size) {
+        for (int i = index; i < size - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        size--;
+        cout << "Task at index " << index << " removed successfully." << endl;
+    }
+}
+
+int main(){
+    string arr[50];
+    int size;
+    int x;
+    addElements(arr, x);
+    int n;
+    cout << "\nHow many tasks do you want to mark as completed? ";
+    cin >> n;
+    int completedIndices[50];
+    cout << "Enter the indices of the tasks to mark as completed (0-based): ";
+    for (int i = 0; i < n; ++i) {
+        cin >> completedIndices[i];
+    }
+    markTasksCompleted(arr, x, completedIndices, n);
+
+    cout << "\nUpdated tasks:\n";
+    for (int i = 0; i < x; ++i) {
+        cout << arr[i] << endl;
+    }
+    int removeIndex;
+    cout << "\nEnter the index of the task you want to remove: ";
+    cin >> removeIndex;
+    removeTask(arr, x, removeIndex);
+
+    cout << "\nUpdated tasks after removing:\n";
+    for (int i = 0; i < x; ++i) {
+        cout << arr[i] << endl;
+    }
+
+    return 0;
+}
